@@ -94,12 +94,3 @@ private:
     T* _out_range;
     mutable std::mutex _mtx;
 };
-
-// 测试代码
-
-
-int main() {
-    MyVector<int> v;
-
-    return 0;
-}

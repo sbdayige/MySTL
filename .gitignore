@@ -1,0 +1,23 @@
+# Build directories
+build/
+bin/
+lib/
+
+# CMake artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Executables
+MySTL
+*.o
+*.out
+*.exe

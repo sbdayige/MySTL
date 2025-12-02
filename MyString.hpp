@@ -66,12 +66,3 @@ public:
         std::cout << "-> " << name << ": '" << c_str() << "', Length: " << len() << std::endl;
     }
 };
-
-signed main(){
-    MyString s1("Hello"); // 调用构造函数
-    s1.print("s1");
-    MyString s2;         // 调用构造函数 (nullptr 版本)
-    s2.print("s2");
-
-    return 0;
-}
