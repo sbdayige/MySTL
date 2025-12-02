@@ -28,6 +28,17 @@ void test_queue() {
         q.pop();
     }
     std::cout << std::endl;
+
+    // Test copy constructor and assignment
+    MyQueue<int> q2;
+    q2.push(10);
+    q2.push(20);
+    MyQueue<int> q3 = q2; // Copy constructor
+    std::cout << "q3 (copy of q2) front: " << q3.front() << std::endl;
+    
+    MyQueue<int> q4;
+    q4 = q2; // Assignment operator
+    std::cout << "q4 (assigned from q2) front: " << q4.front() << std::endl;
 }
 
 void test_vector() {
