@@ -89,7 +89,7 @@ public:
     void push(const T &val)
     {
         Node *node = new Node(val);
-        if (_tail == nullptr)
+        if (empty())
         {
             _head = _tail = node;
         }
@@ -103,12 +103,11 @@ public:
 
     void pop()
     {
-        if (_head == nullptr)
-            return;
+        assert(!empty());
         Node *next = _head->_next;
         delete _head;
         _head = next;
-        if (_head == nullptr)
+        if (empty())
         {
             _tail = nullptr;
         }
@@ -117,7 +116,7 @@ public:
 
     bool empty() const
     {
-        return _head == nullptr;
+        return _size == 0;
     }
 
     const T &front() const

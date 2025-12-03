@@ -4,6 +4,7 @@
 #include "MyString.hpp"
 #include "MyQueue.hpp"
 #include "MyVector.hpp"
+#include "MyStack.hpp"
 
 void test_string()
 {
@@ -12,6 +13,32 @@ void test_string()
     MyString s2(" World");
     MyString s3 = s1 + s2;
     s3.print("s3");
+}
+
+void test_stack()
+{
+    std::cout << "\n--- Testing MyStack ---" << std::endl;
+    MyStack<int> s;
+    s.push(100);
+    s.push(200);
+    s.push(300);
+
+    std::cout << "Stack size: " << s.size() << std::endl;
+    std::cout << "Stack top: " << s.top() << std::endl;
+
+    while (!s.empty())
+    {
+        std::cout << s.top() << " ";
+        s.pop();
+    }
+    std::cout << std::endl;
+
+    // Test copy constructor
+    MyStack<int> s2;
+    s2.push(1);
+    s2.push(2);
+    MyStack<int> s3 = s2;
+    std::cout << "s3 (copy of s2) top: " << s3.top() << std::endl;
 }
 
 void test_queue()
@@ -65,6 +92,7 @@ void test_vector()
 int main()
 {
     test_string();
+    test_stack();
     test_queue();
     test_vector();
     return 0;
