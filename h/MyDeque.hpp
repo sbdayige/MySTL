@@ -6,15 +6,16 @@
 #include <cassert>
 #include <mutex>
 
+template <typename T>
 class MyDeque
 {
 private:
     struct Node
     {
-        int data_;
+        T data_;
         Node *next_;
         Node *prev_;
-        Node(const int val) : data_(val), next_(nullptr), prev_(nullptr) {}
+        Node(const T val) : data_(val), next_(nullptr), prev_(nullptr) {}
     };
 
     Node *head_;
@@ -98,19 +99,19 @@ public:
         return size_ == 0;
     }
 
-    const int front() const
+    const T front() const
     {
         assert(!empty());
         return head_->data_;
     }
 
-    const int back() const
+    const T back() const
     {
         assert(!empty());
         return tail_->data_;
     }
 
-    void push_back(const int &val)
+    void push_back(const T &val)
     {
         Node *node = new Node(val);
         if (empty())
@@ -139,7 +140,7 @@ public:
         size_--;
     }
 
-    void push_front(const int &val)
+    void push_front(const T &val)
     {
         Node *node = new Node(val);
         if (empty())
