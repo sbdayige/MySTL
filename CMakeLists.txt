@@ -19,6 +19,7 @@ add_library(header_checks OBJECT
     h/MyQueue.hpp
     h/MyString.hpp
     h/MyVector.hpp
+    h/MyThreadPool.hpp
 )
 
 # 3. 强制将 .hpp 文件识别为 C++ 源文件
@@ -27,5 +28,6 @@ set_source_files_properties(
     h/MyQueue.hpp
     h/MyString.hpp
     h/MyVector.hpp
+    h/MyThreadPool.hpp
     PROPERTIES LANGUAGE CXX
 )
