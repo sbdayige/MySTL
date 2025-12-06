@@ -1,10 +1,12 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <utility>
 #include "MyString.hpp"
 #include "MyQueue.hpp"
 #include "MyVector.hpp"
 #include "MyStack.hpp"
+#include "MyDeque.hpp"
 
 void test_string()
 {
@@ -89,11 +91,45 @@ void test_vector()
     std::cout << std::endl;
 }
 
+void test_deque()
+{
+    std::cout << "\n--- Testing MyDeque ---" << std::endl;
+    MyDeque d;
+    d.push_back(1);
+    d.push_back(2);
+    d.push_front(0);
+
+    std::cout << "Deque front: " << d.front() << " back: " << d.back() << std::endl;
+
+    std::cout << "Pop front sequence: ";
+    while (!d.empty())
+    {
+        std::cout << d.front() << " ";
+        d.pop_front();
+    }
+    std::cout << std::endl;
+
+    // Test copy and move
+    MyDeque d2;
+    d2.push_back(10);
+    d2.push_back(20);
+    MyDeque d3 = d2; // copy
+    std::cout << "d3 (copy) front: " << d3.front() << std::endl;
+
+    MyDeque d4;
+    d4 = d2; // copy assign
+    std::cout << "d4 (assigned) back: " << d4.back() << std::endl;
+
+    MyDeque d5 = std::move(d2); // move
+    std::cout << "d5 (moved) front: " << d5.front() << std::endl;
+}
+
 int main()
 {
-    test_string();
-    test_stack();
-    test_queue();
-    test_vector();
+    // test_string();
+    // test_stack();
+    // test_queue();
+    test_deque();
+    // test_vector();
     return 0;
 }

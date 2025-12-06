@@ -19,6 +19,7 @@ add_library(header_checks OBJECT
     h/MyQueue.hpp
     h/MyString.hpp
     h/MyVector.hpp
+    h/MyDeque.hpp
     h/MyThreadPool.hpp
 )
 
@@ -28,6 +29,7 @@ set_source_files_properties(
     h/MyQueue.hpp
     h/MyString.hpp
     h/MyVector.hpp
+    h/MyDeque.hpp
     h/MyThreadPool.hpp
     PROPERTIES LANGUAGE CXX
 )
