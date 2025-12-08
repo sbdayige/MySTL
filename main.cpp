@@ -7,6 +7,7 @@
 #include "MyVector.hpp"
 #include "MyStack.hpp"
 #include "MyDeque.hpp"
+#include "Myshared_ptr.cpp"
 
 void test_string()
 {
@@ -94,7 +95,7 @@ void test_vector()
 void test_deque()
 {
     std::cout << "\n--- Testing MyDeque ---" << std::endl;
-    MyDeque d;
+    MyDeque<int> d;
     d.push_back(1);
     d.push_back(2);
     d.push_front(0);
@@ -110,18 +111,37 @@ void test_deque()
     std::cout << std::endl;
 
     // Test copy and move
-    MyDeque d2;
+    MyDeque<int> d2;
     d2.push_back(10);
     d2.push_back(20);
-    MyDeque d3 = d2; // copy
+    MyDeque<int> d3 = d2; // copy
     std::cout << "d3 (copy) front: " << d3.front() << std::endl;
 
-    MyDeque d4;
+    MyDeque<int> d4;
     d4 = d2; // copy assign
     std::cout << "d4 (assigned) back: " << d4.back() << std::endl;
 
     MyDeque d5 = std::move(d2); // move
     std::cout << "d5 (moved) front: " << d5.front() << std::endl;
+}
+
+void test_shared_ptr()
+{
+    std::cout << "\n--- Testing shared_ptr ---" << std::endl;
+    shared_ptr<int> p1(new int(42));
+    std::cout << "p1 count=" << p1.count() << ", value=" << *p1 << std::endl;
+
+    // copy
+    shared_ptr<int> p2 = p1;
+    std::cout << "after copy p1.count=" << p1.count() << ", p2.count=" << p2.count() << std::endl;
+
+    // move
+    shared_ptr<int> p3 = std::move(p2);
+    std::cout << "after move p3.count=" << p3.count() << ", p2.count=" << p2.count() << std::endl;
+
+    // reset
+    p3.reset(new int(100));
+    std::cout << "after reset p3.count=" << p3.count() << ", *p3=" << *p3 << std::endl;
 }
 
 int main()
@@ -130,6 +150,7 @@ int main()
     // test_stack();
     // test_queue();
     test_deque();
+    test_shared_ptr();
     // test_vector();
     return 0;
 }
