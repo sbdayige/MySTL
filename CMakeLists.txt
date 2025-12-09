@@ -21,7 +21,7 @@ add_library(header_checks OBJECT
     h/MyVector.hpp
     h/MyDeque.hpp
     h/MyThreadPool.hpp
-    h/Myshared_ptr.cpp
+    h/Myshared_ptr.hpp
 )
 
 # 3. 强制将 .hpp 文件识别为 C++ 源文件
@@ -32,6 +32,6 @@ set_source_files_properties(
     h/MyVector.hpp
     h/MyDeque.hpp
     h/MyThreadPool.hpp
-    h/Myshared_ptr.cpp
+    h/Myshared_ptr.hpp
     PROPERTIES LANGUAGE CXX
 )

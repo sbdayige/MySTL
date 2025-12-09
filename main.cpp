@@ -7,7 +7,7 @@
 #include "MyVector.hpp"
 #include "MyStack.hpp"
 #include "MyDeque.hpp"
-#include "Myshared_ptr.cpp"
+#include "Myshared_ptr.hpp"
 
 void test_string()
 {
