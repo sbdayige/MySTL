@@ -22,6 +22,7 @@ add_library(header_checks OBJECT
     h/MyDeque.hpp
     h/MyThreadPool.hpp
     h/Myshared_ptr.hpp
+    h/Mylru.hpp
 )
 
 # 3. 强制将 .hpp 文件识别为 C++ 源文件
@@ -33,5 +34,6 @@ set_source_files_properties(
     h/MyDeque.hpp
     h/MyThreadPool.hpp
     h/Myshared_ptr.hpp
+    h/Mylru.hpp
     PROPERTIES LANGUAGE CXX
 )

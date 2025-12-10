@@ -8,6 +8,7 @@
 #include "MyStack.hpp"
 #include "MyDeque.hpp"
 #include "Myshared_ptr.hpp"
+#include "Mylru.hpp"
 
 void test_string()
 {
@@ -144,6 +145,33 @@ void test_shared_ptr()
     std::cout << "after reset p3.count=" << p3.count() << ", *p3=" << *p3 << std::endl;
 }
 
+void test_lru()
+{
+    std::cout << "\n--- Testing LRUCache ---" << std::endl;
+    LRUCache<int, std::string> cache(3);
+    cache.put(1, "one");
+    cache.put(2, "two");
+    cache.put(3, "three");
+
+    std::string v;
+    bool ok = cache.get(2, v);
+    std::cout << "get(2) ok=" << ok << " value=" << (ok ? v : "<none>") << std::endl;
+
+    // insert a new entry, should evict key=1 (least recently used)
+    cache.put(4, "four");
+    ok = cache.get(1, v);
+    std::cout << "after put(4), get(1) ok=" << ok << std::endl;
+
+    // access 3 to make it recently used, then insert 5 -> should evict 2
+    ok = cache.get(3, v);
+    std::cout << "get(3) ok=" << ok << " value=" << (ok ? v : "<none>") << std::endl;
+    cache.put(5, "five");
+    ok = cache.get(2, v);
+    std::cout << "after put(5), get(2) ok=" << ok << std::endl;
+
+    std::cout << "LRU size=" << cache.size() << " capacity=" << cache.capacity() << std::endl;
+}
+
 int main()
 {
     // test_string();
@@ -151,6 +179,7 @@ int main()
     // test_queue();
     test_deque();
     test_shared_ptr();
+    test_lru();
     // test_vector();
     return 0;
 }
