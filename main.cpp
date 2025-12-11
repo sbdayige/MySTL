@@ -9,6 +9,7 @@
 #include "MyDeque.hpp"
 #include "Myshared_ptr.hpp"
 #include "Mylru.hpp"
+#include "unique_ptr.hpp"
 
 void test_string()
 {
@@ -172,14 +173,29 @@ void test_lru()
     std::cout << "LRU size=" << cache.size() << " capacity=" << cache.capacity() << std::endl;
 }
 
+void test_unique_ptr()
+{
+    std::cout << "\n--- Testing unique_ptr ---" << std::endl;
+    unique_ptr<int> u1(new int(7));
+    std::cout << "u1 ok=" << (u1 ? 1 : 0) << " value=" << *u1 << std::endl;
+
+    unique_ptr<int> u2 = std::move(u1);
+    std::cout << "after move: u1 ok=" << (u1 ? 1 : 0) << ", u2 value=" << *u2 << std::endl;
+
+    // move-assign from temporary (acts like reset)
+    u2 = unique_ptr<int>(new int(99));
+    std::cout << "after move-assign, u2 value=" << *u2 << std::endl;
+}
+
 int main()
 {
     // test_string();
     // test_stack();
     // test_queue();
-    test_deque();
-    test_shared_ptr();
-    test_lru();
+    // test_deque();
+    // test_shared_ptr();
+    // test_lru();
+    // test_unique_ptr();
     // test_vector();
     return 0;
 }
